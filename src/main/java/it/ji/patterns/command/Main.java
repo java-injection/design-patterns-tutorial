@@ -1,5 +1,7 @@
 package it.ji.patterns.command;
 
+import it.ji.patterns.command.house.House;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -19,6 +21,13 @@ public class Main {
         // In seguito simuleremo l'aggiunta di un nuovo dispositivo e la configurazione del quarto pulsante.
         // Il nuovo dispositivo è un sistema di irrigazione del giardino.
 
+        //Creiamo la smart home
+        House smartHome = new House();
+        smartHome
+                .addRoom("Soggiorno")
+                .addRoom("Cucina")
+                .addRoom("Camera da letto")
+                .addRoom("Bagno");
 
 
     }
