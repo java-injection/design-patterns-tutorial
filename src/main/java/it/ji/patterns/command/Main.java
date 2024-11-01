@@ -23,11 +23,7 @@ public class Main {
 
         //Creiamo la smart home
         House smartHome = new House();
-        smartHome
-                .addRoom("Soggiorno")
-                .addRoom("Cucina")
-                .addRoom("Camera da letto")
-                .addRoom("Bagno");
+        smartHome.addRooms("Soggiorno", "Cucina", "Camera da letto", "Bagno", "Giardino");
 
 
     }

@@ -9,9 +9,10 @@ public class House {
     private List<Room> rooms = new ArrayList<>();
 
 
-    public House addRoom(String roomName) {
-        rooms.add(new Room(roomName));
-        return this;
+    public void addRooms(String ... roomName) {
+        for (String name : roomName) {
+            rooms.add(new Room(name));
+        }
     }
 
     public List<Room> getRooms() {
