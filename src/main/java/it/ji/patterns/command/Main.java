@@ -1,6 +1,9 @@
 package it.ji.patterns.command;
 
+import it.ji.patterns.command.house.Controller;
 import it.ji.patterns.command.house.House;
+
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -8,6 +11,7 @@ public class Main {
         //Implementeremo una simulazione di una smart home con un sistema di controllo remoto
         //Il telecomando ha 4 pulsanti configurabili e un pulsante per tornare indietro.
         //Le feature che vogliamo ottenere sono:
+        // 0. Selettore di stanza, ogni volta che si preme cambia stanza ciclicamente
         // 1. Visualizzare lo stato della smart home
         //    1.1. Visualizzare lo stato delle luci
         //    1.2. Visualizzare lo stato del riscaldamento
@@ -24,6 +28,55 @@ public class Main {
         //Creiamo la smart home
         House smartHome = new House();
         smartHome.addRooms("Soggiorno", "Cucina", "Camera da letto", "Bagno", "Giardino");
+
+        //Creiamo il telecomando
+        Controller remoteControl = new Controller(smartHome);
+
+        //Configuriamo il telecomando
+        // al momento non possiamo
+
+        Scanner scanner = new Scanner(System.in);
+        int choice = -1;
+
+        while (choice != 6) {
+            System.out.println("----------- SMART HOME ------------");
+            System.out.println("Seleziona l'azione da eseguire:");
+            System.out.println("0. Seleziona stanza");
+            System.out.println("1. PRESS BUTTON 1");
+            System.out.println("2. PRESS BUTTON 2");
+            System.out.println("3. PRESS BUTTON 3");
+            System.out.println("4. PRESS BUTTON 4");
+            System.out.println("5. Annulla l'azione precedente");
+            System.out.println("6. Esci");
+            System.out.println("-----------------------------------");
+            choice = scanner.nextInt();
+            switch (choice) {
+                case 0:
+                    remoteControl.nextRoom();
+                    break;
+                case 1:
+                    remoteControl.button1Pressed();
+                    break;
+                case 2:
+                    remoteControl.button2Pressed();
+                    break;
+                case 3:
+                    remoteControl.button3Pressed();
+                    break;
+                case 4:
+                    remoteControl.button4Pressed();
+                    break;
+                case 5:
+                    remoteControl.undo();
+                    break;
+                case 6:
+                    System.out.println("Arrivederci!");
+                    break;
+                default:
+                    System.out.println("Scelta non valida");
+            }
+        }
+
 
 
     }
