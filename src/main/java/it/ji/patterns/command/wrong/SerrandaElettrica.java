@@ -1,4 +1,4 @@
-package it.ji.patterns.command.wrong1;
+package it.ji.patterns.command.wrong;
 
 public class SerrandaElettrica {
 

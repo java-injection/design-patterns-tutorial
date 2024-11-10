@@ -1,6 +1,6 @@
-package it.ji.patterns.command.ex1.commands;
+package it.ji.patterns.command.live.commands;
 
-import it.ji.patterns.command.ex1.actuators.Heater;
+import it.ji.patterns.command.live.actuators.Heater;
 
 public class HeaterCommand implements Command {
     private Heater heater;

@@ -1,6 +1,6 @@
-package it.ji.patterns.command.ex1.commands;
+package it.ji.patterns.command.live.commands;
 
-import it.ji.patterns.command.ex1.actuators.Light;
+import it.ji.patterns.command.live.actuators.Light;
 
 public class LightCommand implements Command {
 

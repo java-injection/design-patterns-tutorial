@@ -1,4 +1,4 @@
-package it.ji.patterns.command.wrong1;
+package it.ji.patterns.command.wrong;
 
 import java.util.HashMap;
 
@@ -15,7 +15,6 @@ public class Telecomando {
     void pressButton2() {
         System.out.println("Button 2 pressed");
         luceSalone.spegni();
-        HashMap<String, String> map = new HashMap<>();
     }
 
     void pressButton3() {

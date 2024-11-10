@@ -1,42 +1,31 @@
-package it.ji.patterns.command.ex1.house;
+package it.ji.patterns.command.live.client;
 
-import it.ji.patterns.command.ex1.commands.Command;
+import it.ji.patterns.command.live.commands.Command;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class Controller {
-    private House home;
 
-    public enum BUTTONS {
+    public enum Buttons {
         BUTTON_1,
         BUTTON_2,
         BUTTON_3,
         BUTTON_4,
-        ROOM_SELECTOR,
+        UNDO
     }
 
-    private HashMap<BUTTONS, Optional<Command>> commands = new HashMap<>();
+    //Una EnumMap è da preferire perché usa un array internamente dato che le chiavi sono definite e si conoscono
+    //a priori.
+    private Map<Buttons, Optional<Command>> commands = new EnumMap<>(Buttons.class);
     private List<Command> history = new ArrayList<>();
 
-    public Controller(House home) {
-        this.home = home;
-    }
-
-    public void configureButton(BUTTONS button, Command command) {
+    public void configureButton(Buttons button, Command command) {
         commands.put(button, Optional.of(command));
     }
 
-    public void pressButton(BUTTONS button) {
+    public void pressButton(Buttons button) {
         commands.get(button).ifPresent(Command::execute);
     }
-
-    public void nextRoom(){
-        commands.get(BUTTONS.ROOM_SELECTOR).ifPresent(Command::execute);
-    }
-
 
     public void undo() {
         if (!history.isEmpty()) {

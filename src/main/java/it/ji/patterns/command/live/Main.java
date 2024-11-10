@@ -1,9 +1,9 @@
-package it.ji.patterns.command.ex1;
+package it.ji.patterns.command.live;
 
-import it.ji.patterns.command.ex1.actuators.Light;
-import it.ji.patterns.command.ex1.commands.LightCommand;
-import it.ji.patterns.command.ex1.house.Controller;
-import it.ji.patterns.command.ex1.house.House;
+import it.ji.patterns.command.live.actuators.Light;
+import it.ji.patterns.command.live.commands.LightCommand;
+import it.ji.patterns.command.live.client.Controller;
+import it.ji.patterns.command.live.client.House;
 
 import java.util.Scanner;
 
@@ -33,7 +33,7 @@ public class Main {
 
         //Creiamo il telecomando
         Controller remoteControl = new Controller(smartHome);
-        remoteControl.configureButton(Controller.BUTTONS.BUTTON_1, new LightCommand(new Light()));
+        remoteControl.configureButton(Controller.Buttons.BUTTON_1, new LightCommand(new Light()));
 
         //Configuriamo il telecomando
         // al momento non possiamo

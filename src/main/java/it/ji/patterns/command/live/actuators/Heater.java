@@ -1,4 +1,4 @@
-package it.ji.patterns.command.ex1.actuators;
+package it.ji.patterns.command.live.actuators;
 
 public class Heater {
 
