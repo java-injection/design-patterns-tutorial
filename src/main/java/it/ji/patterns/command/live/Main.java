@@ -1,7 +1,9 @@
-package it.ji.patterns.command;
+package it.ji.patterns.command.ex1;
 
-import it.ji.patterns.command.house.Controller;
-import it.ji.patterns.command.house.House;
+import it.ji.patterns.command.ex1.actuators.Light;
+import it.ji.patterns.command.ex1.commands.LightCommand;
+import it.ji.patterns.command.ex1.house.Controller;
+import it.ji.patterns.command.ex1.house.House;
 
 import java.util.Scanner;
 
@@ -31,6 +33,7 @@ public class Main {
 
         //Creiamo il telecomando
         Controller remoteControl = new Controller(smartHome);
+        remoteControl.configureButton(Controller.BUTTONS.BUTTON_1, new LightCommand(new Light()));
 
         //Configuriamo il telecomando
         // al momento non possiamo
@@ -50,31 +53,8 @@ public class Main {
             System.out.println("6. Esci");
             System.out.println("-----------------------------------");
             choice = scanner.nextInt();
-            switch (choice) {
-                case 0:
-                    remoteControl.nextRoom();
-                    break;
-                case 1:
-                    remoteControl.button1Pressed();
-                    break;
-                case 2:
-                    remoteControl.button2Pressed();
-                    break;
-                case 3:
-                    remoteControl.button3Pressed();
-                    break;
-                case 4:
-                    remoteControl.button4Pressed();
-                    break;
-                case 5:
-                    remoteControl.undo();
-                    break;
-                case 6:
-                    System.out.println("Arrivederci!");
-                    break;
-                default:
-                    System.out.println("Scelta non valida");
-            }
+
+
         }
 
 
