@@ -1,9 +1,12 @@
 package it.ji.patterns.command.live;
 
+import it.ji.patterns.command.live.actuators.AirConditioner;
+import it.ji.patterns.command.live.actuators.Heater;
 import it.ji.patterns.command.live.actuators.Light;
+import it.ji.patterns.command.live.commands.AirConditionerCommand;
+import it.ji.patterns.command.live.commands.HeaterCommand;
 import it.ji.patterns.command.live.commands.LightCommand;
 import it.ji.patterns.command.live.client.Controller;
-import it.ji.patterns.command.live.client.House;
 
 import java.util.Scanner;
 
@@ -27,13 +30,12 @@ public class Main {
         // In seguito simuleremo l'aggiunta di un nuovo dispositivo e la configurazione del quarto pulsante.
         // Il nuovo dispositivo è un sistema di irrigazione del giardino.
 
-        //Creiamo la smart home
-        House smartHome = new House();
-        smartHome.addRooms("Soggiorno", "Cucina", "Camera da letto", "Bagno", "Giardino");
 
         //Creiamo il telecomando
-        Controller remoteControl = new Controller(smartHome);
+        Controller remoteControl = new Controller();
         remoteControl.configureButton(Controller.Buttons.BUTTON_1, new LightCommand(new Light()));
+        remoteControl.configureButton(Controller.Buttons.BUTTON_2, new HeaterCommand(new Heater()));
+        remoteControl.configureButton(Controller.Buttons.BUTTON_3, new AirConditionerCommand(new AirConditioner()));
 
         //Configuriamo il telecomando
         // al momento non possiamo
