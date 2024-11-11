@@ -1,5 +1,7 @@
 package it.ji.patterns.state.live.chadstate.manager;
 
+import it.ji.patterns.state.live.chadstate.exceptions.InvalidTransitionException;
+import it.ji.patterns.state.live.chadstate.states.StateTransition;
 import it.ji.patterns.state.live.chadstate.states.TaskEvent;
 import it.ji.patterns.state.live.chadstate.states.TaskState;
 
@@ -16,14 +18,17 @@ public class Task {
         this.currentState = TaskState.TODO;
     }
 
-    public void handleEvent(TaskEvent event) {
-        transitionMatrix.getTransition(currentState, event).ifPresentOrElse(
-                transition -> {
-                    currentState = transition.execute(this);
-                },
-                () -> System.out.println("No transition found for event " + event + " in state " + currentState)
-        );
+    public void handleEvent(TaskEvent event) throws InvalidTransitionException {
+        StateTransition transition = transitionMatrix
+                .getTransition(currentState, event)
+                .orElseThrow(() -> new InvalidTransitionException(
+                        "Invalid transition from state " + currentState + " with event " + event
+                ));
+
+        // Esegui la transizione se trovata
+        currentState = transition.execute(this);
     }
+
 
 
     public String getName() {

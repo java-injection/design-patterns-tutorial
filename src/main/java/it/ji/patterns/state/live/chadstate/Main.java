@@ -1,5 +1,6 @@
 package it.ji.patterns.state.live.chadstate;
 
+import it.ji.patterns.state.live.chadstate.exceptions.InvalidTransitionException;
 import it.ji.patterns.state.live.chadstate.manager.Task;
 import it.ji.patterns.state.live.chadstate.states.TaskEvent;
 import it.ji.patterns.state.live.chadstate.states.TaskState;
@@ -19,13 +20,17 @@ public class Main {
         ));
 
         System.out.println("Task: " + task2.getName() + " is in state: " + task2.getCurrentState());
-        task2.handleEvent(TaskEvent.START_WORKING);
-        System.out.println("Task: " + task2.getName() + " is in state: " + task2.getCurrentState());
-        task2.handleEvent(TaskEvent.END_WORKING);
-        System.out.println("Task: " + task2.getName() + " is in state: " + task2.getCurrentState());
-        //test invalid state
-        task2.handleEvent(TaskEvent.START_WORKING);
-        System.out.println("Task: " + task2.getName() + " is in state: " + task2.getCurrentState());
+        try {
+            task2.handleEvent(TaskEvent.START_WORKING);
+            System.out.println("Task: " + task2.getName() + " is in state: " + task2.getCurrentState());
+            task2.handleEvent(TaskEvent.END_WORKING);
+            System.out.println("Task: " + task2.getName() + " is in state: " + task2.getCurrentState());
+            //test invalid state
+            task2.handleEvent(TaskEvent.START_WORKING);
+            System.out.println("Task: " + task2.getName() + " is in state: " + task2.getCurrentState());
 
+        } catch (InvalidTransitionException e) {
+            System.err.println(e.getMessage());
+        }
     }
 }
