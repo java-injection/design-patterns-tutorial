@@ -2,20 +2,20 @@ package it.ji.patterns.state.live.statemachine;
 
 public class Task {
     private final String name;
-    private final TaskStateMachine stateMachine;
+    private String currentState = null;
 
     public Task(String name) {
         this.name = name;
-        this.stateMachine = new TaskStateMachine();
+        this.currentState = "TODO";
     }
 
     public void applyEvent(String event) {
         System.out.println("Applying event: " + event);
-        stateMachine.applyEvent(event);
+        TaskStateMachine.getInstance().applyEvent(event, currentState);
     }
 
     public String getState() {
-        return stateMachine.getCurrentState();
+        return currentState;
     }
 
     public String getName() {
