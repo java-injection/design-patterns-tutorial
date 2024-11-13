@@ -3,7 +3,7 @@ package it.ji.patterns.observer.live;
 import javax.swing.*;
 import java.awt.*;
 
-public class TerminalFrame extends JFrame {
+public class TerminalFrame extends JFrame implements GuiListener {
     private JTextArea textArea;
 
     public TerminalFrame() {
@@ -38,6 +38,8 @@ public class TerminalFrame extends JFrame {
 
         // Make the frame visible
         setVisible(true);
+
+        GuiEventManager.getInstance().addGuiListener(this);
     }
 
     // Method to append messages to the text area
@@ -50,11 +52,28 @@ public class TerminalFrame extends JFrame {
         SwingUtilities.invokeLater(() -> {
                     TerminalFrame terminalFrame = new TerminalFrame();
                     terminalFrame.append("Hello, World!");
-                    terminalFrame.append("This is a test message.");
-                    terminalFrame.append("This is another test message.");
+                    /*terminalFrame.append("This is a test message.");
+                    terminalFrame.append("This is another test message.");*/
 
                 }
 
         );
+    }
+
+    @Override
+    public void clickedButton(int buttonNumber) {
+        this.append("Ho cliccato il bottone " + buttonNumber);
+    }
+
+    @Override
+    public void sendCommand(String command) {
+        if ("Count Down a 0!".equals(command)) {
+            this.append("SHUTDOWN!!");
+            this.append("SHUTDOWN!!");
+            this.append("SHUTDOWN!!");
+        }
+        else {
+            this.append("Ho eseguito il comando " + command);
+        }
     }
 }

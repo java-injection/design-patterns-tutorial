@@ -6,7 +6,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class ScreenFrame extends JFrame {
+public class ScreenFrame extends JFrame implements GuiListener {
     private JLabel messageLabel;
     private JPanel panel;
     private ScheduledExecutorService scheduler;
@@ -42,6 +42,8 @@ public class ScreenFrame extends JFrame {
 
         // Make the frame visible
         setVisible(true);
+
+        GuiEventManager.getInstance().addGuiListener(this);
     }
 
     // Method to change the background to yellow and the text to red with "WARNING"
@@ -66,6 +68,7 @@ public class ScreenFrame extends JFrame {
                     panel.setBackground(Color.BLACK);
                     messageLabel.setForeground(Color.RED);
                     messageLabel.setText("Segmentation fault");
+                    GuiEventManager.getInstance().sendCommand("Count Down a 0!");
                 }
             }
         };
@@ -78,7 +81,7 @@ public class ScreenFrame extends JFrame {
         SwingUtilities.invokeLater(() -> {
             ScreenFrame warningFrame = new ScreenFrame();
             // Simulate a warning after 3 seconds
-            Timer warningTimer = new Timer(3000, e -> {
+            /*Timer warningTimer = new Timer(3000, e -> {
                 warningFrame.warning();
                 ((Timer) e.getSource()).stop();
             });
@@ -91,7 +94,21 @@ public class ScreenFrame extends JFrame {
                 ((Timer) e.getSource()).stop();
             });
             countdownTimer.setRepeats(false);
-            countdownTimer.start();
+            countdownTimer.start();*/
         });
+    }
+
+    @Override
+    public void clickedButton(int buttonNumber) {
+        if(buttonNumber == 1) {
+            this.warning();
+        } else if(buttonNumber == 2){
+            this.startCountdown();
+        }
+    }
+
+    @Override
+    public void sendCommand(String command) {
+
     }
 }

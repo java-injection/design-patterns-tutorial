@@ -32,6 +32,7 @@ public class MainFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Hai cliccato Bottone 1");
+                GuiEventManager.getInstance().clickedButton(1);
             }
         });
 
@@ -39,6 +40,7 @@ public class MainFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Hai cliccato Bottone 2");
+                GuiEventManager.getInstance().clickedButton(2);
             }
         });
 
@@ -46,6 +48,7 @@ public class MainFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Hai cliccato Bottone 3");
+                GuiEventManager.getInstance().clickedButton(3);
             }
         });
 
